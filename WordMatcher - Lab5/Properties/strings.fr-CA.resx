@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Error" xml:space="preserve">
-    <value>The entered option was not recognized.</value>
+    <value>L'option saisie n'a pas été reconnue.</value>
   </data>
   <data name="FCase" xml:space="preserve">
     <value>Saisir le chemin complet, y compris le nom du fichier :</value>
