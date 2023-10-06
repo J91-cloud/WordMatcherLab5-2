@@ -10,6 +10,8 @@ namespace WordMatcher___Lab5
 {
     class Program
     {
+        // Authors: Jessy and Hristo
+
         private static readonly FileReader _fileReader = new FileReader();
         private static readonly WordMatcher _wordMatcher = new WordMatcher();
 
