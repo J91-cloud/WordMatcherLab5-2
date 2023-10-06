@@ -10,6 +10,12 @@ namespace WordMatcher___Lab5
 {
     class Program
     {
+        /*
+         
+         so when you make a change you got to "Git Changes" , write a comment about the change and then "Commit All".
+
+        To pull the new changes you go to "View" , "Git repository" and then you "pull"
+         */
         // Authors: Jessy and Hristo
 
         // Hristo try to Pull this
