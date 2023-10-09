@@ -27,59 +27,66 @@ namespace WordMatcher___Lab5
         {
             try
             {
-                Console.WriteLine("Before we begin do you want to be served in English, Yes/No");
-                String answer = Console.ReadLine();
+                bool validInput = false;
+                Console.WriteLine("Before we begin, do you want to be served in English? Yes/No");
+                string answer = Console.ReadLine();
 
-                if (answer == "yes")
+                while (!validInput)
                 {
-                    Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
-
-                    String option = Console.ReadLine() ?? throw new Exception("String is empty");
-
-                    switch (option.ToUpper())
+                    if (answer.Equals("yes", StringComparison.OrdinalIgnoreCase)) // this class is for, case does not matter, found online 
                     {
-                        case "F":
-                            Console.WriteLine("Enter full path including the file name: ");
-                            ExecuteScrambledWordsInFileScenario();
-                            break;
-                        case "M":
+                        Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
 
-                            Console.WriteLine(Properties.strings.MCase);
-                            string userInput = Console.ReadLine();
-
-                            List<string> matchedWords = ExecuteScrambledWordsManualEntryScenario(userInput);
-
-                            Console.WriteLine("Matched words:");
-                            foreach (string word in matchedWords)
+                        string option;
+                        do
+                        {
+                            option = Console.ReadLine()?.ToUpper();
+                            if (option == "F")
                             {
-                                Console.WriteLine(word);
+                                Console.WriteLine("Enter the full path including the file name: ");
+                                ExecuteScrambledWordsInFileScenario();
+                                break;
                             }
+                            else if (option == "M")
+                            {
+                                Console.WriteLine(Properties.strings.MCase);
+                                string userInput = Console.ReadLine();
 
-                            break;
-                        default:
-                            Console.WriteLine("The entered option was not recognized.");
-                            break;
+                                List<string> matchedWords = ExecuteScrambledWordsManualEntryScenario(userInput);
+
+                                Console.WriteLine("Matched words:");
+                                foreach (string word in matchedWords)
+                                {
+                                    Console.WriteLine(word);
+                                }
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("The entered option was not recognized, please try again with the same prompt");
+                            }
+                        } while (true);
+
+                        Console.ReadLine();
+                        validInput = true;
                     }
-
-                    Console.ReadLine();
-
-
-                }
-                else if (answer == "no")
-                {
+                    else if (answer.Equals("no", StringComparison.OrdinalIgnoreCase))
                     {
                         Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-CA");
                         Console.WriteLine(Properties.strings.Instructions);
 
-                        String option = Console.ReadLine() ?? throw new Exception("String is empty");
-
-                        switch (option.ToUpper())
+                        string option;
+                        do
                         {
-                            case "F":
+                            option = Console.ReadLine()?.ToUpper();
+                            if (option == "F")
+                            {
                                 Console.WriteLine(Properties.strings.FCase);
                                 ExecuteScrambledWordsInFileScenario();
                                 break;
-                            case "M":
+                            }
+                            else if (option == "M")
+                            {
                                 Console.WriteLine(Properties.strings.MCase);
                                 string userInput = Console.ReadLine();
 
@@ -90,29 +97,29 @@ namespace WordMatcher___Lab5
                                 {
                                     Console.WriteLine(word);
                                 }
-                               
                                 break;
-                            default:
+                            }
+                            else
+                            {
                                 Console.WriteLine(Properties.strings.Error);
-                                break;
-                        }
+                            }
+                        } while (true);
+
+                        validInput = true;
+                        Console.ReadLine();
                     }
-
-                    Console.ReadLine();
-
-
+                    else
+                    {
+                        Console.WriteLine("Wrong input. Please try again.");
+                        answer = Console.ReadLine();
+                    }
                 }
-                else Console.WriteLine("Wrong");
-
-                
-
-
             }
             catch (Exception ex)
             {
-                Console.WriteLine("The program will be terminated." + ex.Message);
-
+                Console.WriteLine("The program will be terminated. " + ex.Message);
             }
+
         }
 
         private static void ExecuteScrambledWordsInFileScenario()
@@ -135,18 +142,42 @@ namespace WordMatcher___Lab5
 
             for (int i = 0; i < words.Length; i++)
             {
+                char[] sortedWord = words[i].ToCharArray();
+                Array.Sort(sortedWord);
+
                 for (int j = i + 1; j < words.Length; j++)
                 {
-                    if (words[i].Length == words[j].Length && words[i].SequenceEqual(words[j]))
+                    char[] sortedOtherWord = words[j].ToCharArray();
+                    Array.Sort(sortedOtherWord);
+
+                    if (sortedWord.Length == sortedOtherWord.Length && AreArraysEqual(sortedWord, sortedOtherWord))
                     {
                         matchedWords.Add(words[i]);
+                        matchedWords.Add(words[j]);
                         break;
                     }
                 }
             }
 
             return matchedWords;
+        }
 
+        private static bool AreArraysEqual(char[] array1, char[] array2)
+        {
+            if (array1.Length != array2.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] != array2[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
