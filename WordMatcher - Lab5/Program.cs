@@ -185,8 +185,18 @@ namespace WordMatcher___Lab5
             //read the list of words from the system file. 
             string[] wordList = _fileReader.Read("wordlist.txt");
 
+
+
             //call a word matcher method to get a list of structs of matched words.
             List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);
+
+            // Display the matched words
+            Console.WriteLine("Matched Words:");
+            foreach (var matchedWord in matchedWords)
+            {
+                Console.WriteLine($"Scrambled Word: {matchedWord.ScrambledWord}, Word: {matchedWord.Word}");
+
+            }
         }
     }
 }
