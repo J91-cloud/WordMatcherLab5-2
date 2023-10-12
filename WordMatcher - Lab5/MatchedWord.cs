@@ -10,5 +10,6 @@ namespace WordMatcher___Lab5
     {
         public string ScrambledWord { get; set; }
         public string Word { get; set; }
+
     }
 }
