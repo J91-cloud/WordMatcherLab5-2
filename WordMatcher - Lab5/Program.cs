@@ -193,7 +193,12 @@ namespace WordMatcher___Lab5
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
         {
             //read the list of words from the system file. 
-            string[] wordList = _fileReader.Read("wordlist.txt");
+           // string[] wordList = _fileReader.Read("wordlist.txt");
+           Console.WriteLine("Enter a file path to compare with");
+            var file2 = Console.ReadLine();
+            string[] wordList = _fileReader.Read(file2);
+
+
 
 
 
