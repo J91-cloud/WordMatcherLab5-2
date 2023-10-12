@@ -25,6 +25,7 @@ namespace WordMatcher___Lab5
 
         static void Main(string[] args)
         {
+            
             try
             {
                 bool validInput = false;
@@ -67,7 +68,7 @@ namespace WordMatcher___Lab5
                             }
                         } while (true);
 
-                        Console.ReadLine();
+                        
                         validInput = true;
                     }
                     else if (answer.Equals("no", StringComparison.OrdinalIgnoreCase))
@@ -106,7 +107,7 @@ namespace WordMatcher___Lab5
                         } while (true);
 
                         validInput = true;
-                        Console.ReadLine();
+                        
                     }
                     else
                     {
@@ -120,7 +121,13 @@ namespace WordMatcher___Lab5
                 Console.WriteLine("The program will be terminated. " + ex.Message);
             }
 
+            string original = "isItWorking";
+            string reversed = original.ReverseString();
+            Console.WriteLine(reversed); 
+
         }
+
+
 
         private static void ExecuteScrambledWordsInFileScenario()
         {
