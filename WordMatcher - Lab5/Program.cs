@@ -140,20 +140,22 @@ namespace WordMatcher___Lab5
 
             List<string> matchedWords = new List<string>();
 
+            string[] wordList = _fileReader.Read("wordlist.txt"); // Load words from the file
+
             for (int i = 0; i < words.Length; i++)
             {
                 char[] sortedWord = words[i].ToCharArray();
                 Array.Sort(sortedWord);
 
-                for (int j = i + 1; j < words.Length; j++)
+                for (int j = 0; j < wordList.Length; j++)
                 {
-                    char[] sortedOtherWord = words[j].ToCharArray();
+                    char[] sortedOtherWord = wordList[j].ToCharArray();
                     Array.Sort(sortedOtherWord);
 
                     if (sortedWord.Length == sortedOtherWord.Length && AreArraysEqual(sortedWord, sortedOtherWord))
                     {
                         matchedWords.Add(words[i]);
-                        matchedWords.Add(words[j]);
+                        matchedWords.Add(wordList[j]);
                         break;
                     }
                 }
@@ -161,6 +163,7 @@ namespace WordMatcher___Lab5
 
             return matchedWords;
         }
+
 
         private static bool AreArraysEqual(char[] array1, char[] array2)
         {
