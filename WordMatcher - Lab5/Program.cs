@@ -38,7 +38,7 @@ namespace WordMatcher___Lab5
                     if (answer.Equals("yes", StringComparison.OrdinalIgnoreCase)) // this class is for, case does not matter, found online 
                     {
 
-                        Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                     Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
                         
                         WordMatcher___Lab5.Properties.strings.FCase.ReverseString();
 
@@ -69,10 +69,10 @@ namespace WordMatcher___Lab5
 
                             }
 
-                            else
-                            {
-                                Console.WriteLine("The entered option was not recognized, please try again with the same prompt");
-                            }
+                          else
+                          {
+             Console.WriteLine("The entered option was not recognized, please try again with the same prompt");
+                          }
 
                             
                         } while (true);
