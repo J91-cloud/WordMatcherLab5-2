@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WordMatcher___Lab5;
 
 namespace WordMatcher___Lab5
 {
@@ -36,7 +37,10 @@ namespace WordMatcher___Lab5
                 {
                     if (answer.Equals("yes", StringComparison.OrdinalIgnoreCase)) // this class is for, case does not matter, found online 
                     {
+
                         Console.WriteLine("Enter scrambled word(s) manually or as a file: F - file / M - manual");
+                        
+                        WordMatcher___Lab5.Properties.strings.FCase.ReverseString();
 
                         string option;
                         do
@@ -61,11 +65,16 @@ namespace WordMatcher___Lab5
                                     Console.WriteLine(word);
                                 }
                                 break;
+
+
                             }
+
                             else
                             {
                                 Console.WriteLine("The entered option was not recognized, please try again with the same prompt");
                             }
+
+                            
                         } while (true);
 
                         
@@ -121,12 +130,8 @@ namespace WordMatcher___Lab5
                 Console.WriteLine("The program will be terminated. " + ex.Message);
             }
 
-            string original = "isItWorking";
-            string reversed = original.ReverseString();
-            Console.WriteLine(reversed); 
-
         }
-
+        
 
 
         private static void ExecuteScrambledWordsInFileScenario()
@@ -197,8 +202,6 @@ namespace WordMatcher___Lab5
            Console.WriteLine("Enter a file path to compare with");
             var file2 = Console.ReadLine();
             string[] wordList = _fileReader.Read(file2);
-
-
 
 
 

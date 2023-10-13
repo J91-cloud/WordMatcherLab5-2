@@ -8,11 +8,9 @@ namespace WordMatcher___Lab5
 {
     public static class Extension
     {
-        public static string ReverseString(this string str)
+        public static void ReverseString(this string str)
         {
-            char[] charArray = str.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
+            Console.WriteLine(str);// print a message
         }
 
     }
